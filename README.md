@@ -18,7 +18,7 @@ Looks like the following file extensions are used in DAL game files:
 
 - **.drg**: Unsure/proprietory, looks like 3D model.
 - **.dra**: Unsure/proprietory, wild guess is animation because it's linked to .drg file most of the time, but not all the time.
-- **.drc**: Unsure/proprietory, don't know what is this - some heroes have but some don't, quite inconsistent.
+- **.drc**: Unsure/proprietory, looks like some 2D element used for effects (lightning bolt, knives thrown by Ireine) and UI (item box border).
 - **.dre**: Unsure/proprietory, looks like particle effects because it has filenames like 'fire', 'light' or 'smoke'.
 - **.ogg**: OGG sound files and music.
 - **.dds**: Microsoft DDS Texture files.
