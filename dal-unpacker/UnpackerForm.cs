@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -45,21 +46,24 @@ namespace dal_unpacker
             {
                 byte[] fileBytes = File.ReadAllBytes(file);
                 ByteArraySearcher searcher = new ByteArraySearcher();
-                int[] positions = searcher.Locate(fileBytes, ByteHeaders.DDS); // Change this part for other formats too.
-                int numberOfFiles = positions.Length;
+                Dictionary<int, string> positions = searcher.Locate(fileBytes); // Change this part for other formats too.
+                int numberOfFiles = positions.Count;
 
                 // Output path is currently fixed to the same place as the target file, will give user a choice in future.
                 string outputPath = Path.GetDirectoryName(file) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(file);
                 Directory.CreateDirectory(outputPath); // Create the output directory.
 
-                MessageBox.Show("Number of matches = " + numberOfFiles);
-                // Split bytes by DDS Header.                  
+                MessageBox.Show("Number of files detected = " + numberOfFiles);
+                // Split bytes by known file positions.             
+                List<int> list = positions.Keys.ToList();
+                list.Sort();
+
                 for (int i = 0; i < numberOfFiles; i++)
                 {
-                    int start = positions[i];
-                    int end = i == (numberOfFiles - 1) ? fileBytes.Length - start : positions[i + 1] - start;
+                    int start = list[i];
+                    int end = i == (numberOfFiles - 1) ? fileBytes.Length - start : list[i + 1] - start;
                         
-                    File.WriteAllBytes(outputPath + Path.DirectorySeparatorChar + i + ".dds", new ArraySegment<byte>(fileBytes, start, end).ToArray());
+                    File.WriteAllBytes(outputPath + Path.DirectorySeparatorChar + i + positions[list[i]], new ArraySegment<byte>(fileBytes, start, end).ToArray());
                 }
             }
         }

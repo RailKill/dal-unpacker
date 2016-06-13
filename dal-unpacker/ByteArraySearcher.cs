@@ -8,32 +8,53 @@ namespace dal_unpacker
     class ByteArraySearcher
     {
         /// <summary>
-        /// Empty integer array.
+        /// Dictionary containing all known byte header patterns and its file extension.
         /// </summary>
-        int[] Empty = new int[0];
+        private Dictionary<byte[], string> PatternDictionary;
+
+        /// <summary>
+        /// Default constructor which initializes all known Darkness and Light game file formats.
+        /// </summary>
+        public ByteArraySearcher()
+        {
+            PatternDictionary = new Dictionary<byte[], string>();
+            PatternDictionary.Add(ByteHeaders.DDS, ".dds");
+            PatternDictionary.Add(ByteHeaders.DRA, ".dra");
+            PatternDictionary.Add(ByteHeaders.DRC, ".drc");
+            PatternDictionary.Add(ByteHeaders.DRE, ".dre");
+            PatternDictionary.Add(ByteHeaders.DRG, ".drg");
+        }
 
         /// <summary>
         /// Locates the position of a given pattern in a target byte array.
         /// </summary>
         /// <param name="target">Target byte array.</param>
-        /// <param name="pattern">Pattern to be searched.</param>
-        /// <returns>Integer array of positions.</returns>
-        public int[] Locate(byte[] target, byte[] pattern)
+        /// <returns>An unsorted dictionary with a file extension value for each position key. 
+        /// Because dictionaries have no order, you must sort the keys (positions) before manipulating it.</returns>
+        public Dictionary<int, string> Locate(byte[] target)
         {
-            if (IsEmptyLocate(target, pattern))
-                return Empty;
+            Dictionary<int, string> positionDictionary = new Dictionary<int, string>();
 
-            var list = new List<int>();
-
+            // Validate inputs before proceeding.
+            foreach (byte[] pattern in PatternDictionary.Keys)
+            {
+                if (IsEmptyLocate(target, pattern))
+                    return positionDictionary;
+            }
+                        
+            // Start locating file positions.
             for (int i = 0; i < target.Length; i++)
             {
-                if (!IsMatch(target, i, pattern))
-                    continue;
+                foreach (byte[] pattern in PatternDictionary.Keys)
+                {
+                    if (!IsMatch(target, i, pattern))
+                        continue;
 
-                list.Add(i);
+                    positionDictionary.Add(i, PatternDictionary[pattern]);
+                }
             }
 
-            return list.Count == 0 ? Empty : list.ToArray();
+            return positionDictionary;
         }
 
         /// <summary>
@@ -69,6 +90,5 @@ namespace dal_unpacker
                 || pattern.Length == 0
                 || pattern.Length > array.Length;
         }
-
     }
 }
