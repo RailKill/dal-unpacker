@@ -1,9 +1,6 @@
 # Darkness and Light Unpacker
 Unpacks .DRP game files from Darkness and Light SEA. Written in Visual Studio using C# .NET.
 
-Currently only works for .DRP files with pure .DDS contents only. It is not able to deal with others such as 3D models or sound files
-at this stage. Will work on it though.
-
 
 How to Use
 -----------
@@ -16,9 +13,11 @@ List of Filetypes in DAL
 ----------------------------
 Looks like the following file extensions are used in DAL game files:
 
-- **.drg**: Unsure/proprietory, looks like 3D model. DRG, DRA and DRC are almost always linked and have the same name.
+*Note: .drg, .dra, .drc and .dre usually come together, like a bundle for 3D model and animations.*
+
+- **.drg**: Unsure/proprietory, looks like a 3D model rig with bones.
 - **.dra**: Unsure/proprietory, wild guess is animation because it's linked to .drg file most of the time, but not all the time.
-- **.drc**: Unsure/proprietory, looks like some 2D/3D element used for effects (lightning bolt, knives thrown by Ireine, item boxes).
+- **.drc**: Unsure/proprietory, looks like 3D model, especially if it has no rig (lightning bolt, knives thrown by Ireine, item boxes).
 - **.dre**: Unsure/proprietory, looks like particle effects because it has filenames like 'fire', 'light' or 'smoke'.
 - **.drr**: Proprietory, DAL map file.
 - **.drd**: Propreitory, DAL data file.
