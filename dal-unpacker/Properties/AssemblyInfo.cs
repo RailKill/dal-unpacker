@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("dal-unpacker")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Unpacks .DRP game files from Darkness and Light SEA.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("RailKill")]
 [assembly: AssemblyProduct("dal-unpacker")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]

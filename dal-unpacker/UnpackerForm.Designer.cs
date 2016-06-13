@@ -167,7 +167,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "UnpackerForm";
-            this.Text = "RailKill\'s Darkness and Light Unpacker";
+            this.Text = "Darkness and Light Unpacker v1.0 by RailKill";
             this.grpUnpack.ResumeLayout(false);
             this.grpUnpack.PerformLayout();
             this.grpOptions.ResumeLayout(false);
