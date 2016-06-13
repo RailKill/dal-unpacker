@@ -23,6 +23,7 @@ namespace dal_unpacker
             PatternDictionary.Add(ByteHeaders.DRC, ".drc");
             PatternDictionary.Add(ByteHeaders.DRE, ".dre");
             PatternDictionary.Add(ByteHeaders.DRG, ".drg");
+            PatternDictionary.Add(ByteHeaders.OGG, ".ogg");
         }
 
         /// <summary>

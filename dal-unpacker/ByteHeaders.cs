@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace dal_unpacker
 {
@@ -53,6 +49,14 @@ namespace dal_unpacker
         public static byte[] DRC = new byte[]
         {
             10, 215, 163, 63, 1, 0, 0, 0
+        };
+
+        /// <summary>
+        /// OGG Vorbis .OGG file header for sound files.
+        /// </summary>
+        public static byte[] OGG = new byte[]
+        {
+            79, 103, 103, 83, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0
         };
     }
 }
